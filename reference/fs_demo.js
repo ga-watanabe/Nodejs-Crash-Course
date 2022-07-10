@@ -22,7 +22,23 @@ fs.writeFile(
         if (err) throw err;
 
         console.log("file witten");
+
+        fs.rename(
+          path.join(__dirname, "test", "hello.txt"),
+          path.join(__dirname, "test", "hello_world.txt"),
+          (err) => {
+            if (err) throw err;
+
+            console.log("rename");
+          }
+        );
       }
     );
   }
 );
+
+fs.readFile(path.join(__dirname, "test", "hello.txt"), "utf-8", (err, data) => {
+  if (err) throw err;
+
+  console.log("read file", data);
+});
